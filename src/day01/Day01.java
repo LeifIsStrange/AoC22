@@ -10,7 +10,7 @@ public class Day01 {
 
 	public static void main(String[] args) throws IOException {
 		ArrayList<String> lines = new ArrayList<>(
-				Files.readAllLines(Paths.get("D:\\Uni\\Eclipse\\AoC22\\src\\day01\\Input")));
+				Files.readAllLines(Paths.get(".\\src\\day01\\Input")));
 		System.out.println(combineCalories(lines));
 		ArrayList<Integer> top = topThreeCalories(lines);
 		int topThree = 0;
