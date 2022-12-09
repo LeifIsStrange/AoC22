@@ -26,29 +26,30 @@ public class Day05 {
 			}
 			storage.add(temp);
 		}
-		for (int i = 0; i < storage.size(); i++) {
-			System.out.println(storage.get(i));
-		}
-		System.out.println();
-		System.out.println(taskA(storage, orders));
+		System.out.println(taskA(new ArrayList<>(storage), orders));
+		System.out.println(taskB(new ArrayList<>(storage), orders));
 	}
 
 	public static String taskA(ArrayList<ArrayList<Character>> input, List<int[]> orders) {
 		for (int i = 0; i < orders.size(); i++) {
 			for (int j = 0; j < orders.get(i)[0]; j++) {
-				input.get(orders.get(i)[2]-1).add(input.get(orders.get(i)[1]-1).get(0));
-				input.get(orders.get(i)[1]-1).remove(0);
+				input.get(orders.get(i)[2] - 1).add(0, input.get(orders.get(i)[1] - 1).get(0));
+				input.get(orders.get(i)[1] - 1).remove(0);
 			}
 		}
-		for (int i = 0; i < input.size(); i++) {
-			System.out.println(input.get(i));
-		}
-		return input.stream().map(a -> a.get(a.size()-1)).toString();
+		return input.stream().map(a -> a.get(0).toString()).collect(Collectors.joining());
 	}
 
-	public static int taskB(List<int[]> input) {
-		int sum = 0;
-		return sum;
+	public static String taskB(ArrayList<ArrayList<Character>> input, List<int[]> orders) {
+		for (int i = 0; i < orders.size(); i++) {
+			ArrayList<Character> temp = new ArrayList<>();
+			for (int j = 0; j < orders.get(i)[0]; j++) {
+				temp.add(input.get(orders.get(i)[1] - 1).get(0));
+				input.get(orders.get(i)[1] - 1).remove(0);
+			}
+			input.get(orders.get(i)[2] - 1).addAll(0, temp);
+		}
+		return input.stream().map(a -> a.get(0).toString()).collect(Collectors.joining());
 	}
 
 }
